@@ -1,13 +1,12 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import styles from './Button.style'
 
-const Button = ({ onSubmit }) => {
+const Button = ({ onSubmit, label, theme = "default", ...otherProps }) => {
   return (
-    <View>
-      <TouchableOpacity
-        onPress={onSubmit}
-      >
-        <Text>Tekst</Text>
+    <View style={styles[theme].container} >
+      <TouchableOpacity {...otherProps}>
+        <Text style={styles[theme].label} >{label}</Text>
       </TouchableOpacity>
     </View>
   );
