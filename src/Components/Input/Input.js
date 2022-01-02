@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { TextInput, View } from 'react-native';
+import { TextInput, View, Text } from 'react-native';
+import styles from "./Input.style";
 
-const AuthInput = ({ ...otherProps }) => {
+
+const Input = ({ label, ...otherProps}) => {
 
 
   return (
-    <View>
-      <TextInput
-        {...otherProps}
-      />
+    <View style={styles.container} >
+      <Text style={styles.label}>{label}</Text>
+      <View style={styles.inputContainer} >
+        <TextInput style={styles.input} {...otherProps}
+          
+        />
+      </View>
     </View>
   );
 };
 
-export default AuthInput;
+export default Input;
 
