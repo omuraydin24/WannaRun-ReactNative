@@ -1,97 +1,136 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Button, PermissionsAndroid, Platform, ActivityIndicator } from 'react-native';
+import { View, Button, PermissionsAndroid, StyleSheet, ActivityIndicator, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { hasPermission } from "../../Hooks/useLocationPermission";
+import { Timer, Countdown } from 'react-native-element-timer';
 import MapView, { Circle, Polyline, Marker, AnimatedRegion } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import { hasPermission } from "../../Hooks/useLocationPermission";
 import MapViewDirections from "react-native-maps-directions";
+import ActivityLayout from './ActivityLayout';
+import calculateDistance from '../../Helper/CalculateDistance/CalculateDistance';
 
 const GOOGLE_API = "AIzaSyArbjnFtKZXprOc80XxdhqMQ7szz-AnBhM"
 
-
 const Activity = () => {
   const navigation = useNavigation();
-  const [currentPosition, setCurrentPosition] = useState(initialState)
-  const mapRef = useRef(null)
 
-  const initialState = {
-    latitude: 37.3318456,
-    longitude: -122.0296002,
+  const timerRef = useRef(null);
+  const [currentLocation, setCurrentLocation] = useState({
+    latitude: 0, longitude: 0
+  })
+  const [allData, setAllData] = useState({
+    allCoords: [],
+    distance: 0,
+    time: 0
+  })
+  const [loading, setLoading] = useState(true)
+  const [status, setStatus] = useState(false)
 
+  const getPosition = () => {
+    Geolocation.getCurrentPosition(
+      (p) => {
+        console.log("Current Position", p)
+        handleCoordinates(p)
+      },
+      (e) => console.log(e),
+      {
+        accuracy: {
+          android: "high",
+        },
+        enableHighAccuracy: true,
+      }
+    )
   }
 
-  const destination = {
-    latitude: 37.771707,
-    longitude: -122.4053769,
+  const handleTimerStart = () => {
+    {
+      !status && timerRef.current.start()
+    }
+    setStatus(true)
+  }
+  const handleTimerStop = () => {
+    { !status && timerRef.current.stop() }
+    setStatus(true)
+  }
+  const handleEnd = (t) => {
+    setAllData({ ...allData, time: t })
+  }
+  const handleTimer = (t) => {
+    console.log("t", t)
+    if (t % 5 == 0) {
+      getPosition()
+    }
   }
 
-  const interval = useRef(null)
+  const handleCoordinates = (c) => {
+    setCurrentLocation({
+      latitude: c.coords.latitude,
+      longitude: c.coords.longitude
+    })
+  }
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      (c) => {
+        setAllData({
+          allCoords: [{
+            latitude: c.coords.latitude,
+            longitude: c.coords.longitude
+          }],
+          distance: 0,
+          time: 0
+        })
+        setCurrentLocation({
+          latitude: c.coords.latitude,
+          longitude: c.coords.longitude
+        })
+        setLoading(false),
+
+          (e) => console.log(e),
+        {
+          accuracy: {
+            android: "high",
+          },
+          enableHighAccuracy: true,
+        }
+        setLoading(false)
+      }
+    )
+  }, [])
 
   useEffect(() => {
-    if (!initialState || !destination) return;
-    mapRef.current.fitToSuppliedMarkers(["origin", "destination"], {
-      edgePadding: { top: 50, right: 50, bottom: 50, left: 50 }
-    })
-  }, [initialState, destination])
+    const length = allData.allCoords.length - 1
+    if (currentLocation.latitude !== 0 && currentLocation.latitude !== allData.allCoords[length].latitude) {
+      setAllData({
+        allCoords: [...allData.allCoords, currentLocation],
+        distance: allData.distance + calculateDistance(allData.allCoords[length].latitude, allData.allCoords[length].longitude, currentLocation.latitude, currentLocation.longitude),
+        time: 0
+      })
+    }
+  }, [currentLocation])
+  console.log("allData",allData)
+  // useEffect(() => {
+  //   if (coord.latitude !== 0) {
+  //     setCoords([...coords, coord])
+  //   }
+  // }, [coord])
 
-  console.log(destination.latitude)
+  if (loading) {
+    return <ActivityIndicator size="large" />
+  }
   return (
-    <View style={{ flex: 1, position: 'relative' }}>
-      <View style={{ flex: 1 }}
-        pointerEvents="none"
-      >
-        <MapView
-          ref={mapRef}
-          style={{ flex: 1, opacity: 0.6 }}
-          initialRegion={{
-            latitude: initialState.latitude,
-            longitude: initialState.longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
-          }}
-        >
-          <Circle
-            center={{
-              latitude: initialState.latitude,
-              longitude: initialState.longitude,
-            }}
-            radius={10}
-            fillColor="red"
-          />
-          {initialState && destination && (
-            <MapViewDirections
-              origin={initialState}
-              destination={destination}
-              apikey={GOOGLE_API}
-              strokeWidth={3}
-              strokeColor="blue"
-            />
-          )}
-
-          {initialState && (
-            <Marker
-              coordinate={{
-                latitude: initialState.latitude,
-                longitude: initialState.longitude
-              }}
-              title="Origin"
-              description="Origin Marker"
-              identifier="origin"
-            />)}
-          {destination && (
-            <Marker
-              coordinate={{
-                latitude: destination.latitude,
-                longitude: destination.longitude
-              }}
-              title="Destination"
-              description="Destination Marker"
-              identifier="destination"
-            />)}
-        </MapView>
-      </View>
-      <Button title="Go"></Button>
-    </View >
+    <ActivityLayout
+      loading={loading}
+      handleTimerStart={handleTimerStart}
+      handleTimerStop={handleTimerStop}
+      timerRef={timerRef}
+      handleTimer={handleTimer}
+      initialLocation={allData.allCoords[0]}
+      currentLocation={currentLocation}
+      allData={allData}
+      handleEnd={handleEnd}
+    />
   )
 }
+
 export default Activity;
+
