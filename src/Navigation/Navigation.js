@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Activity from '../Pages/Activity';
 import Dashboard from '../Pages/Dashboard';
+import SignIn from '../Pages/Auth/SignIn';
+import SignUp from "../Pages/Auth/SignUp";
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import routes from "./routes";
+import auth from '@react-native-firebase/auth'
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -14,13 +19,29 @@ const Navigation = () => {
   // navTheme.colors.background = theme == 'light' ? 'green' : 'blue';
 
   const DetailStack = () => {
+    const [hasSession, setHasSession] = useState(null)
+
+    useEffect(() => {
+      const subscriber = auth().onAuthStateChanged(setHasSession)
+      return subscriber;
+    }, [])
+
     return (
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Dashboard" component={Dashboard} />
-        <Stack.Screen name="YeniAktivite" component={Activity} />
+        {!!hasSession ? (
+          <>
+            <Stack.Screen name={routes.DASHBOARD_PAGE} component={Dashboard} />
+            <Stack.Screen name={routes.ACTIVITY_PAGE} component={Activity} />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name={routes.SIGN_IN_PAGE} component={SignIn} />
+            <Stack.Screen name={routes.SIGN_UP_PAGE} component={SignUp} />
+          </>
+        )}
       </Stack.Navigator>
     );
   };
@@ -28,23 +49,23 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-      // screenOptions={{
-      //   headerShown: false,
-      //   tabBarActiveTintColor: colors.accentColor,
-      //   tabBarInactiveTintColor: colors.white,
-      //   tabBarStyle: {
-      //     backgroundColor: colors.black,
-      //     height: 65,
-      //   },
-      //   tabBarLabelStyle: {
-      //     bottom: 10,
-      //     // fontFamily: 'Proxima Nova Semibold',
-      //     // fontSize: fontSize.small,
-      //   },
-      // }}
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: "blue",
+          tabBarInactiveTintColor: "black",
+          tabBarStyle: {
+            backgroundColor: "white",
+            height: 65,
+          },
+          tabBarLabelStyle: {
+            bottom: 10,
+            // fontFamily: 'Proxima Nova Semibold',
+            // fontSize: fontSize.small,
+          },
+        }}
       >
         <Tab.Screen
-          name="DashboardTab"
+          name="MainTab"
           component={DetailStack}
         // options={{
         //   tabBarLabel: t("Comics"),
