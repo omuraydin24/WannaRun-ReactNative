@@ -3,15 +3,15 @@ import { TextInput, View, Text } from 'react-native';
 import styles from "./Input.style";
 
 
-const Input = ({ label, ...otherProps}) => {
+const Input = ({ label, value, onChangeText, ...otherProps }) => {
 
 
   return (
     <View style={styles.container} >
       <Text style={styles.label}>{label}</Text>
       <View style={styles.inputContainer} >
-        <TextInput style={styles.input} {...otherProps}
-          
+        <TextInput style={styles.input} value={value} {...otherProps} onChangeText={onChangeText}
+
         />
       </View>
     </View>

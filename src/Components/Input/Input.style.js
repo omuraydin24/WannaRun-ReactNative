@@ -1,6 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Metrics } from '../../Components/styles/metrics';
 import { colorNames } from '../../Components/styles/colors';
+const { width, height } = Dimensions.get('window');
 
 
 export default StyleSheet.create({
@@ -9,8 +10,7 @@ export default StyleSheet.create({
     padding: 5,
   },
   inputContainer: {
-    backgroundColor: "#e0e0e0",
-    padding: 5,
+    backgroundColor: "blue",
     borderRadius: 5,
   },
   label: {
@@ -18,7 +18,10 @@ export default StyleSheet.create({
     color: "black"
   },
   input: {
-    flex: 1,
+    backgroundColor: "#eceff1",
+    margin: 2,
+    padding: 5,
+    borderRadius: 5,
   },
 });
 
