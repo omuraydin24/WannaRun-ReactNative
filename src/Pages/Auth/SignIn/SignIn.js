@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, Alert, Text } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 import Input from '../../../Components/Input'
 import Button from '../../../Components/Button'
 import routes from '../../../Navigation/routes'
+import auth from '@react-native-firebase/auth';
+import SignInLayout from './SignInLayout';
 
+import { ValidationScheme } from '../../../Components/utils/ValidationScheme'
 
-import styles from "./SignIn.style";
 
 const SignIn = () => {
   const navigation = useNavigation();
@@ -16,22 +18,22 @@ const SignIn = () => {
     navigation.navigate(routes.SIGN_UP_PAGE)
   }
 
+  const handleSignIn = (formValues) => {
+    try {
+      auth()
+        .signInWithEmailAndPassword(formValues.username, formValues.password)
+      Alert.alert('WannaRun', 'Logged In successfully.')
+      navigation.navigate(routes.DASHBOARD_PAGE)
+      console.log("formvalues", formValues)
+
+    } catch (err) {
+      console.log(err)
+      Alert.alert('WannaRun', 'An error occurred')
+    }
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>🏃‍♂️</Text>
-      <Formik
-        initialValues={{ username: '', password: '' }}
-        onSubmit={formValues => console.log(formValues)}>
-        {({ handleChange, handleSubmit, values }) => (
-          <View>
-            <Input label="Email" value={values.username} onChangeText={handleChange('username')} />
-            <Input label="Password" value={values.password} onChangeText={handleChange('password')} />
-            <Button label="Sign In" onPress={handleSubmit} />
-          </View>
-        )}
-      </Formik>
-      <Button label="Sign Up" theme="outline" onPress={handleNavigateSignUp} />
-    </View>
+    <SignInLayout onSubmit={handleSignIn} onSignUpNavigate={handleNavigateSignUp} />
   );
 }
 

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, KeyboardAvoidingView, TouchableOpacity, Keyboard, TextInput } from 'react-native';
+import { View, Text, SafeAreaView, KeyboardAvoidingView, TouchableOpacity, Keyboard, Alert } from 'react-native';
 import Input from '../../../Components/Input';
 import AuthButton from '../../../Components/Button';
 import SignUpLayout from './SignUpLayout/SignUpLayout';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+
 
 const SignUp = props => {
   const navigation = useNavigation();
@@ -16,8 +18,30 @@ const SignUp = props => {
     navigation.goBack();
   }
 
+  const handleSignUp = (formValues) => {
+
+    if (formValues.password !== formValues.passwordAgain) {
+      Alert.alert('WannaRun', 'Şifreler eşleşmedi')
+      return;
+    }
+    try {
+      auth()
+        .createUserWithEmailAndPassword(
+          formValues.username, formValues.password
+        )
+      Alert.alert('WannaRun', 'User created. Now you can sign in.')
+      console.log("formvalues", formValues)
+
+    } catch (err) {
+      console.log(err)
+      Alert.alert('WannaRun', 'An error occurred')
+    }
+
+
+  }
+
   return (
-    <SignUpLayout onPress={handleReturnSignIn} />
+    <SignUpLayout onSubmit={handleSignUp} onPress={handleReturnSignIn} />
   )
 }
 

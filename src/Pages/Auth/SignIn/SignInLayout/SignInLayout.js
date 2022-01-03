@@ -1,21 +1,23 @@
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
-import { Formik } from "formik"
-import Button from '../../../../Components/Button';
-import Input from "../../../../Components/Input";
-import auth from '@react-native-firebase/auth';
+import { View, Alert, Text } from 'react-native';
+import { Formik } from "formik";
+import Input from '../../../../Components/Input'
+import Button from '../../../../Components/Button'
 
-import styles from "./SignUpLayout.style";
-import { SignUpScheme } from "../../../../Components/utils/ValidationScheme";
+import { SignInScheme } from '../../../Components/utils/ValidationScheme'
 
-const SignUpLayout = ({ onSubmit, onPress }) => {
+
+import styles from "./SignInLayout.style";
+
+const SignIn = ({ onSubmit, onSignUpNavigate }) => {
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>🏃‍♂️</Text>
       <Formik
         initialValues={{ username: '', password: '' }}
-        validationSchema={SignUpScheme}
+        validationSchema={SignInScheme}
         onSubmit={onSubmit}
       >
         {({ handleChange, handleSubmit, values, errors, touched, handleBlur }) => (
@@ -34,21 +36,15 @@ const SignUpLayout = ({ onSubmit, onPress }) => {
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
             />
-            <Input
-              label="Password Again"
-              secureTextEntry
-              value={values.passwordAgain}
-              onChangeText={handleChange('passwordAgain')}
-              onBlur={handleBlur('passwordAgain')}
-            />
             <Text style={styles.validationText}>{touched.password && errors.password}</Text>
-            <Button label="Sign Up" onPress={handleSubmit} />
+            <Button label="Sign In" onPress={handleSubmit} />
           </View>
         )}
       </Formik>
-      <Button label="Back" theme="outline" onPress={onPress} />
-    </View >
+      <Button label="Sign Up" theme="outline" onPress={onSignUpNavigate} />
+    </View>
   );
 }
-export default SignUpLayout;
 
+
+export default SignIn;
