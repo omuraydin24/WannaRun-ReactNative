@@ -7,10 +7,12 @@ import MapView, { Circle, Polyline, Marker, AnimatedRegion } from 'react-native-
 import Geolocation from '@react-native-community/geolocation';
 import MapViewDirections from "react-native-maps-directions";
 
+import styles from "./ActivityLayout.style";
+
 const GOOGLE_API = "AIzaSyArbjnFtKZXprOc80XxdhqMQ7szz-AnBhM"
 import { PROVIDER_GOOGLE } from 'react-native-maps';
 
-const ActivityLayout = ({ loading, allData, handleTimerStart, handleTimerStop, timerRef, handleTimer, initialLocation, currentLocation, handleEnd }) => {
+const ActivityLayout = ({ loading, handleActivity, allData, handleTimerStart, handleTimerStop, timerRef, handleTimer, initialLocation, currentLocation, handleEnd }) => {
   return (
     <View style={{ flex: 1, position: 'relative' }}>
       <View style={{ flex: 1 }}
@@ -20,9 +22,9 @@ const ActivityLayout = ({ loading, allData, handleTimerStart, handleTimerStop, t
           // ref={mapRef}
           style={{ flex: 1, opacity: 0.6 }}
           provider={PROVIDER_GOOGLE}
-          initialRegion={{
-            latitude: initialLocation.latitude,
-            longitude: initialLocation.longitude,
+          region={{
+            latitude: currentLocation.latitude,
+            longitude: currentLocation.longitude,
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           }}
@@ -68,7 +70,7 @@ const ActivityLayout = ({ loading, allData, handleTimerStart, handleTimerStop, t
           /> */}
         </MapView>
       </View>
-      <View><Text>Distance: {allData.distance}</Text></View>
+      <View><Text>Distance: {Math.floor(allData.distance * 1000)} Meters</Text></View>
       <Timer
         ref={timerRef}
         style={styles.timer}
@@ -81,6 +83,11 @@ const ActivityLayout = ({ loading, allData, handleTimerStart, handleTimerStop, t
         style={styles.button}
         title={'Start'}
         onPress={handleTimerStart}
+      />
+      <Button
+        style={styles.button}
+        title={'Database'}
+        onPress={handleActivity}
       />
       <Button
         style={styles.button}
@@ -100,27 +107,3 @@ const ActivityLayout = ({ loading, allData, handleTimerStart, handleTimerStop, t
 
 export default ActivityLayout;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 20,
-  },
-  text: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginTop: 40,
-  },
-  timer: {
-    marginVertical: 10,
-  },
-  timerText: {
-    fontSize: 20,
-  },
-  button: {
-    marginVertical: 5,
-    backgroundColor: 'white',
-    borderRadius: 24,
-    width: 100,
-  },
-});

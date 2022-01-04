@@ -8,6 +8,9 @@ import Geolocation from '@react-native-community/geolocation';
 import MapViewDirections from "react-native-maps-directions";
 import ActivityLayout from './ActivityLayout';
 import calculateDistance from '../../Helper/CalculateDistance/CalculateDistance';
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
+
 
 const GOOGLE_API = "AIzaSyArbjnFtKZXprOc80XxdhqMQ7szz-AnBhM"
 
@@ -59,6 +62,7 @@ const Activity = () => {
     console.log("t", t)
     if (t % 5 == 0) {
       getPosition()
+      // handleActivity()
     }
   }
 
@@ -68,7 +72,44 @@ const Activity = () => {
       longitude: c.coords.longitude
     })
   }
+  function handleActivity() {
+    // const newReference = database().ref('/users').push();
+    // console.log('Auto generated key: ', newReference.key);
+    try {
+      console.log("çalıştı")
+      console.log("current user", auth().currentUser.uid)
+      database()
+        .ref('/Users/' + auth().currentUser.uid)
+        .push()
+        .set({ allData })
+
+
+    } catch (err) {
+      console.log("error", err)
+    }
+    // newReference
+    //   .set({
+    //     age: 32,
+    //   })
+    //   .then(() => console.log('Data updated.'));
+    // database()
+    //   .ref('/Activity')
+    //   .once('value')
+    //   .then(snapshot => {
+    //     console.log('User data: ', snapshot.val());
+    //   });
+    console.log("DATABASE")
+  }
+
+
+
+
   useEffect(() => {
+    const locationPermission = hasPermission();
+    if (!locationPermission) {
+      console.log("location permission yok")
+      return;
+    }
     Geolocation.getCurrentPosition(
       (c) => {
         setAllData({
@@ -95,6 +136,7 @@ const Activity = () => {
         setLoading(false)
       }
     )
+    // handleActivity()
   }, [])
 
   useEffect(() => {
@@ -107,7 +149,7 @@ const Activity = () => {
       })
     }
   }, [currentLocation])
-  console.log("allData",allData)
+  console.log("allData", allData)
   // useEffect(() => {
   //   if (coord.latitude !== 0) {
   //     setCoords([...coords, coord])
@@ -117,6 +159,9 @@ const Activity = () => {
   if (loading) {
     return <ActivityIndicator size="large" />
   }
+
+
+
   return (
     <ActivityLayout
       loading={loading}
@@ -128,6 +173,7 @@ const Activity = () => {
       currentLocation={currentLocation}
       allData={allData}
       handleEnd={handleEnd}
+      handleActivity={handleActivity}
     />
   )
 }

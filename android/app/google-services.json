@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "878131556021",
-    "project_id": "wanna-run-5b986",
-    "storage_bucket": "wanna-run-5b986.appspot.com"
+    "project_number": "660305879548",
+    "project_id": "wanna-run-63702",
+    "storage_bucket": "wanna-run-63702.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:878131556021:android:96c7234508caedcc1458fc",
+        "mobilesdk_app_id": "1:660305879548:android:5fbb17c44df41353665279",
         "android_client_info": {
           "package_name": "com.wannarun"
         }
       },
       "oauth_client": [
         {
-          "client_id": "878131556021-gnhmmou42gcucdmvl165bl5t5o4altvc.apps.googleusercontent.com",
+          "client_id": "660305879548-a9b9eq162pj09fhfpftn0aal3t6hlbo0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAmRFV1S_FwoMefycaQgKHItnxB6SKApUc"
+          "current_key": "AIzaSyA9BsFzjyH3FMCvTQLEPvDI2PMqMrADERY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "878131556021-gnhmmou42gcucdmvl165bl5t5o4altvc.apps.googleusercontent.com",
+              "client_id": "660305879548-a9b9eq162pj09fhfpftn0aal3t6hlbo0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
