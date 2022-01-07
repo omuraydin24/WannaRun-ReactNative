@@ -6,9 +6,11 @@ import Activity from '../Pages/Activity';
 import Dashboard from '../Pages/Dashboard';
 import SignIn from '../Pages/Auth/SignIn';
 import SignUp from "../Pages/Auth/SignUp";
+import History from "../Pages/History";
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import routes from "./routes";
 import auth from '@react-native-firebase/auth'
+import Leaderboard from '../Pages/Leaderboard/Leaderboard';
 
 
 const Tab = createBottomTabNavigator();
@@ -35,6 +37,7 @@ const Navigation = () => {
           <>
             <Stack.Screen name={routes.DASHBOARD_PAGE} component={Dashboard} />
             <Stack.Screen name={routes.ACTIVITY_PAGE} component={Activity} />
+            <Stack.Screen name={routes.HISTORY_PAGE} component={History} />
           </>
         ) : (
           <>
@@ -74,42 +77,17 @@ const Navigation = () => {
         //   },
         // }}
         />
-        {/* <Tab.Screen
-          name={routes.CHARACTERS}
-          component={CharacterDetailStack}
-          options={{
-            tabBarLabel: t("Characters"),
-            tabBarIcon: ({ focused, color, size }) => {
-              return (
-                <Icon name="account-cowboy-hat" size={size} color={color} />
-              );
-            },
-          }}
+        <Tab.Screen
+          name="HistoryTab"
+          component={History}
+
         />
         <Tab.Screen
-          name={routes.FAVORITES}
-          component={FavoriteTab}
-          options={{
-            tabBarLabel: t("Favorites"),
-            // unmountOnBlur: true,
-            tabBarIcon: ({ focused, color, size }) => {
-              return <Icon name="star" size={size} color={color} />;
-            },
-          }}
-          // listeners={({ navigation }) => ({
-          //   blur: () => navigation.setParams({ screen: undefined }),
-          // })}
+          name="LeaderboardTab"
+          component={Leaderboard}
+
         />
-        <Tab.Screen
-          name={routes.SETTINGS}
-          component={Settings}
-          options={{
-            tabBarLabel: t("Settings"),
-            tabBarIcon: ({ focused, color, size }) => {
-              return <Icon name="cog" size={size} color={color} />;
-            },
-          }}
-        /> */}
+
       </Tab.Navigator>
     </NavigationContainer>
   );
