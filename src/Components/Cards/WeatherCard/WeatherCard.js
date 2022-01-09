@@ -14,7 +14,7 @@ const WeatherCard = ({ currentLocation }) => {
     loading
   } = useFetch(`${URL}lat=${currentLocation.latitude}&lon=${currentLocation.longitude}&units=metric&appid=${key}`);
 
-  console.log("weatherData", weatherData);
+  // console.log("weatherData", weatherData);
 
   if (loading == true) {
     return <ActivityIndicator size="small" />
