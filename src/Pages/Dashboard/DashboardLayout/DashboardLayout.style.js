@@ -59,19 +59,13 @@ export default StyleSheet.create({
     fontSize: 17,
     textAlign: "center",
   },
-  infoValue:{
+  infoValue: {
     fontWeight: "bold"
   },
-  // header: {
-  //   position: "absolute",
-  //   top: 0,
-  //   flexDirection: "row",
-  //   justifyContent: 'space-between',
-  //   width: width * 0.95,
-  // },
   headerText: {
     fontSize: 20,
     marginTop: 15,
+    fontFamily: "AveriaSansLibre-Regular"
   },
   leaderboardContainer: {
     width: width * 0.35,
@@ -79,9 +73,6 @@ export default StyleSheet.create({
     backgroundColor: "#b1bffe",
     borderRadius: 30,
 
-  },
-  imageContainer: {
-    // backgroundColor: "#c1e6ff",
   },
   mainTitle: {
     fontSize: 30,
@@ -117,7 +108,7 @@ export default StyleSheet.create({
   },
   leaderboard: {
     backgroundColor: "#ffbf87",
-    
+
   },
   signout: {
     backgroundColor: "#f44336"

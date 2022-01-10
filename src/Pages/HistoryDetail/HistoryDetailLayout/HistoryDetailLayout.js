@@ -2,21 +2,18 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import MapView, { Circle, Polyline, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Polyline, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import styles from './HistoryDetailLayout.style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 const HistoryDetailLayout = ({ detailData }) => {
   const navigation = useNavigation();
-
   const mapRef = useRef(null)
-  const detail = detailData.allData
+  const detail = detailData.allData;
 
   const timeSecond = (Math.floor(detail.time % 60) < 10) ? "0" + Math.floor(detail.time % 60) : Math.floor(detail.time % 60)
   const timeMinute = (Math.floor(detail.time / 60) < 10) ? "0" + Math.floor(detail.time / 60) : Math.floor(detail.time / 60)
   const timeHour = (Math.floor(detail.time / 3600) < 10) ? "0" + Math.floor(detail.time / 3600) : Math.floor(data.duration / 3600)
-
 
   useEffect(() => {
     mapRef.current.fitToSuppliedMarkers(["origin", "destination"], {
@@ -58,7 +55,7 @@ const HistoryDetailLayout = ({ detailData }) => {
             />
             <Polyline
               coordinates={detail.allCoords}
-              strokeColor="#816cf9" // fallback for when `strokeColors` is not supported by the map-provider
+              strokeColor="#816cf9"
               strokeWidth={6}
             />
           </MapView>

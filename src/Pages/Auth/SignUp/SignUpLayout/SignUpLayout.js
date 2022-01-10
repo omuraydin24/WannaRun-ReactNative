@@ -1,21 +1,19 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { Formik } from "formik"
+import { SignUpScheme } from "../../../../Components/utils/ValidationScheme";
 import Button from '../../../../Components/Button';
 import Input from "../../../../Components/Input";
-import auth from '@react-native-firebase/auth';
 
 import styles from "./SignUpLayout.style";
-// import { SignUpScheme } from "../../../../Components/utils/ValidationScheme";
 
 const SignUpLayout = ({ onSubmit, onPress }) => {
-
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../../../../assets/images/logo.png')} />
       <Formik
         initialValues={{ username: '', password: '' }}
-        // validationSchema={SignUpScheme}
+        validationSchema={SignUpScheme}
         onSubmit={onSubmit}
       >
         {({ handleChange, handleSubmit, values, errors, touched, handleBlur }) => (
@@ -34,6 +32,7 @@ const SignUpLayout = ({ onSubmit, onPress }) => {
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
             />
+            <Text style={styles.validationText}>{touched.password && errors.password}</Text>
             <Input
               label="Password Again"
               secureTextEntry

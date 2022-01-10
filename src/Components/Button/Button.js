@@ -4,11 +4,11 @@ import styles from './Button.style'
 
 const Button = ({ onSubmit, onPress, label, theme = "default", ...otherProps }) => {
   return (
-    <View style={styles[theme].container} >
-      <TouchableOpacity {...otherProps} onPress={onPress}>
+    <TouchableOpacity {...otherProps} onPress={onPress}>
+      <View style={styles[theme].container} >
         <Text style={styles[theme].label} >{label}</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 

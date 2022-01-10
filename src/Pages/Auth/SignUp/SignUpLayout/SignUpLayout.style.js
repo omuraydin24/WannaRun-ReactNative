@@ -1,6 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   container: {
     justifyContent: "center",
@@ -12,4 +11,9 @@ export default StyleSheet.create({
     alignSelf: 'center',
     height: 100,
   },
+  validationText: {
+    color: "crimson",
+    fontWeight: "bold",
+    marginHorizontal: 10,
+  }
 })

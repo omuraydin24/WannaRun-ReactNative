@@ -21,7 +21,7 @@ const SignUp = props => {
   const handleSignUp = (formValues) => {
 
     if (formValues.password !== formValues.passwordAgain) {
-      Alert.alert('WannaRun', 'Şifreler eşleşmedi')
+      Alert.alert('WannaRun', 'Mismatched password')
       return;
     }
     try {
@@ -30,10 +30,8 @@ const SignUp = props => {
           formValues.username, formValues.password
         )
       Alert.alert('WannaRun', 'User created. Now you can sign in.')
-      console.log("formvalues", formValues)
 
     } catch (err) {
-      console.log(err)
       Alert.alert('WannaRun', 'An error occurred')
     }
 

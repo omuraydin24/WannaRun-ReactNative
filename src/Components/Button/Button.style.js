@@ -1,7 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Metrics } from '../../Components/styles/metrics';
-import { colorNames } from '../../Components/styles/colors';
-
 
 export default {
     default: StyleSheet.create({
@@ -14,12 +11,12 @@ export default {
             borderWidth: 1,
             borderColor: "blue"
         },
-        
+
         label: {
             fontWeight: "bold",
             color: "white"
         },
-        
+
     }),
     outline: StyleSheet.create({
         container: {

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import database from '@react-native-firebase/database';
-import DashboardLayout from './DashboardLayout';
 import auth from '@react-native-firebase/auth';
-
+import DashboardLayout from './DashboardLayout';
 
 const Dashboard = () => {
   const navigation = useNavigation();
@@ -13,7 +12,7 @@ const Dashboard = () => {
   const handleSignOut = () => auth().signOut();
 
   useEffect(() => {
-    navigation.addListener("focus", event => {
+    navigation.addListener("focus", () => {
       handleDataPull()
     });
   }, [])
@@ -23,26 +22,12 @@ const Dashboard = () => {
       .ref('/sumUsers/' + auth().currentUser.uid)
       .once('value')
       .then(snapshot => {
-        // console.log('User data: ', snapshot.val());
         setUserData(snapshot.toJSON());
-        // setLeaderboardData(handleDataFormat(data))
-        // console.log("toplamData", data)
       })
       .catch((err) => {
-        console.log(err)
+        Alert.alert('WannaRun', 'An error occurred')
       })
   }
-
-  // function handleDataFormat(data) {
-  //   return Object.keys(data).map(key => {
-  //     console.log("key", key)
-  //     return {
-  //       id: key,
-  //       ...data[key],
-
-  //     }
-  //   })
-  // }
 
   return (
     <DashboardLayout onSignOut={handleSignOut} userData={userData} />

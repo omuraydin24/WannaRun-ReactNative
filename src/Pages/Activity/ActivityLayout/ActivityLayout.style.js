@@ -23,8 +23,7 @@ export default StyleSheet.create({
     borderColor: "#816cf9",
     borderRadius: 20,
   },
-  mapContainer: {
-  },
+  
   infoContainer: {
     top: 0,
     height: 200,

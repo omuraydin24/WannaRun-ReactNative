@@ -1,14 +1,13 @@
 import React from 'react';
-import { View, Image, ScrollView, TouchableOpacity, TouchableWithoutFeedback, Text, ActivityIndicator } from 'react-native';
+import { View, Image, ScrollView, TouchableOpacity, TouchableWithoutFeedback, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import routes from '../../../Navigation/routes';
-import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './DashboardLayout.style';
 
 const DashboardLayout = ({ userData, onSignOut }) => {
   const navigation = useNavigation();
-  // console.log("layoutuserData", userData)
+
   const handleGoActivity = _ => {
     navigation.navigate(routes.ACTIVITY_PAGE,);
   }
@@ -20,14 +19,6 @@ const DashboardLayout = ({ userData, onSignOut }) => {
   }
   return (
     <View style={styles.container}>
-      {/* <View style={styles.header}>
-        <TouchableOpacity >
-          <Icon name="menu" size={35} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Icon name="history" size={35} color="white" onPress={handleGoHistory} />
-        </TouchableOpacity>
-      </View> */}
       <Text style={styles.headerText}>Wanna Run?</Text>
       <View style={styles.infoContainer}>
         {userData &&
@@ -66,14 +57,7 @@ const DashboardLayout = ({ userData, onSignOut }) => {
           <Icon style={styles.icon} name="cog" size={60} color="white" />
         </TouchableOpacity>
       </ScrollView>
-
-      {/* <Button style={styles.button} title='Yeni Aktivite' />
-      <Button style={styles.historyButton} title='Aktivite Geçmişi' />
-      <Button style={styles.leaderboardButton} title='Leaderboard' /> */}
-      {/* <Button style={styles.activityButton} title='Sign Out' onPress={onSignOut} /> */}
     </View >
   );
 }
-
-
 export default DashboardLayout;

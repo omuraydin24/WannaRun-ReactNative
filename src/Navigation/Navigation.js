@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Activity from '../Pages/Activity';
 import Dashboard from '../Pages/Dashboard';
 import SignIn from '../Pages/Auth/SignIn';
@@ -9,19 +8,13 @@ import SignUp from "../Pages/Auth/SignUp";
 import History from "../Pages/History";
 import HistoryDetail from "../Pages/HistoryDetail";
 import Summary from "../Pages/Summary";
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import routes from "./routes";
 import auth from '@react-native-firebase/auth'
 import Leaderboard from '../Pages/Leaderboard';
 
-
-const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const Navigation = () => {
-  // const navTheme = DefaultTheme;
-  // navTheme.colors.background = theme == 'light' ? 'green' : 'blue';
-
   const [hasSession, setHasSession] = useState(null)
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(setHasSession)

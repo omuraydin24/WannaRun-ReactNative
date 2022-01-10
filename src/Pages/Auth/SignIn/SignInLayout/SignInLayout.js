@@ -1,23 +1,19 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { Formik } from "formik";
+import { SignInScheme } from '../../../../Components/utils/ValidationScheme'
 import Input from '../../../../Components/Input'
 import Button from '../../../../Components/Button'
-
-// import SignInScheme from '../../../Components/utils/ValidationScheme'
-
 
 import styles from "./SignInLayout.style";
 
 const SignIn = ({ onSubmit, onSignUpNavigate }) => {
-
-
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require('../../../../assets/images/logo.png')}/>
+      <Image style={styles.logo} source={require('../../../../assets/images/logo.png')} />
       <Formik
         initialValues={{ username: '', password: '' }}
-        // validationSchema={SignInScheme}
+        validationSchema={SignInScheme}
         onSubmit={onSubmit}
       >
         {({ handleChange, handleSubmit, values, errors, touched, handleBlur }) => (
@@ -45,6 +41,4 @@ const SignIn = ({ onSubmit, onSignUpNavigate }) => {
     </View>
   );
 }
-
-
 export default SignIn;

@@ -1,23 +1,21 @@
 import React from 'react';
-import { View, ScrollView, TouchableOpacity, ActivityIndicator, Text } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { Timer } from 'react-native-element-timer';
 import { BarChart } from "react-native-chart-kit";
 import { PROVIDER_GOOGLE } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
-
-import MapView, { Circle, Polyline, Marker, AnimatedRegion } from 'react-native-maps';
-import WeatherCard from '../../../Components/Cards/WeatherCard';
+import MapView, { Circle, Polyline } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import chartConfig from '../../../Components/utils/chartConfig';
+import WeatherCard from '../../../Components/Cards/WeatherCard';
 
 import styles from "./ActivityLayout.style";
 
-
-const ActivityLayout = ({ viewRef, hasStarted, chartConfig, barGraphData, handleTimerPause, onPress, allData, handleTimerStart, handleTimerStop, timerRef, handleTimer, initialLocation, currentLocation, handleEnd }) => {
+const ActivityLayout = ({ hasStarted, barGraphData, allData, onTimerStart, onTimerStop, timerRef, onTimer, currentLocation, onTimerEnd }) => {
   const navigation = useNavigation();
   const pace = (((allData.distance) / (allData.time / 3600)).toFixed(2))
 
-  // console.log("time", allData.time)
-  // console.log("alldata", allData)
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.goBack} onPress={() => navigation.pop(2)}>
@@ -29,9 +27,8 @@ const ActivityLayout = ({ viewRef, hasStarted, chartConfig, barGraphData, handle
             ref={timerRef}
             style={styles.timer}
             textStyle={styles.timerText}
-            onTimes={e => handleTimer(e)}
-            onPause={e => { }}
-            onEnd={e => handleEnd(e)}
+            onTimes={e => onTimer(e)}
+            onEnd={e => onTimerEnd(e)}
           />
           <View style={styles.innerContainer}>
             <View style={styles.valueContainer}>
@@ -43,10 +40,9 @@ const ActivityLayout = ({ viewRef, hasStarted, chartConfig, barGraphData, handle
               <Text style={styles.distanceText}>Avg. pace (km/h)</Text>
             </View>
           </View>
-
           <WeatherCard currentLocation={currentLocation} />
         </View>
-        <View style={styles.mapContainer} pointerEvents="none" ref={viewRef}>
+        <View style={styles.mapContainer} pointerEvents="none">
           <MapView
             style={styles.map}
             provider={PROVIDER_GOOGLE}
@@ -64,14 +60,13 @@ const ActivityLayout = ({ viewRef, hasStarted, chartConfig, barGraphData, handle
             />
             <Polyline
               coordinates={allData.allCoords}
-              strokeColor="#816cf9" // fallback for when `strokeColors` is not supported by the map-provider
+              strokeColor="#816cf9"
               strokeWidth={6}
             />
           </MapView>
         </View>
-
         <View style={styles.statusButtonContainer}>
-          <TouchableOpacity style={styles.statusButton} onPress={hasStarted ? handleTimerStop : handleTimerStart}>
+          <TouchableOpacity style={styles.statusButton} onPress={hasStarted ? onTimerStop : onTimerStart}>
             {
               hasStarted ?
                 <Icon name="stop" size={60} color="white" />
@@ -96,25 +91,4 @@ const ActivityLayout = ({ viewRef, hasStarted, chartConfig, barGraphData, handle
     </View >
   );
 }
-
 export default ActivityLayout;
-
-{/* <Marker
-            coordinate={{
-              latitude: coords.latitude,
-              longitude: coords.longitude
-            }}
-            title="Destination"
-            description="Destination Marker"
-            identifier="destination"
-          /> */}
-
-
-{/* <Circle
-            center={{
-              latitude: coord.latitude,
-              longitude: coord.longitude,
-            }}
-            radius={3}
-            fillColor="red"
-          /> */}
