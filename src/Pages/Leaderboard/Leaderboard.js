@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import SwitchSelector from 'react-native-switch-selector';
 
 import styles from './Leaderboard.style';
-import Leaderboardcard from '../../Components/Cards/LeaderboardCard/LeaderboardCard';
+import LeaderboardCard from '../../Components/Cards/LeaderboardCard/LeaderboardCard';
 
 
 const Leaderboard = () => {
@@ -62,43 +62,41 @@ const Leaderboard = () => {
       .then(snapshot => {
         console.log('User data: ', snapshot.toJSON());
         const data = snapshot.toJSON();
-        setLeaderboardData(arrayle(data))
+        setLeaderboardData(handleDataFormat(data))
       })
       .catch((err) => {
         console.log(err)
       })
   }
-  console.log("Leaderboard Data: ", leaderboardData)
 
 
   const renderLeaderboard = ({ item }) => {
     console.log("item", item.distance)
     return (
-      <Leaderboardcard data={item} />
+      <LeaderboardCard data={item} />
     )
   }
 
-  function arrayle(data) {
+  function handleDataFormat(data) {
     return Object.keys(data).map(key => {
-      console.log("key", key)
+      console.log("data", data)
       return {
         id: key,
         ...data[key],
-
       }
     })
+      .sort(function (a, b) {
+        return (a.distance > b.distance) ? -1 : ((a.distance < b.distance) ? 1 : 0);
+      });
   }
 
   return (
     <View>
-      <SwitchSelector
-        options={options}
-        initial={0}
-        onPress={value => console.log(`Call onPress with value: ${value}`)}
-      />
-      <View style={styles.title}>
-        <Text>Distance(m)</Text>
-        <Text>Duration</Text>
+      <Text style={styles.header}>Leaderboard</Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Username</Text>
+        <Text style={styles.title}>Distance</Text>
+        <Text style={styles.title}>Duration</Text>
       </View>
       <FlatList
         renderItem={renderLeaderboard}
