@@ -27,7 +27,7 @@ Leaderboard Screen          |
 - [Install React Native](https://reactnative.dev/docs/environment-setup)
 
 ```
-git clone https://github.com/patika-128-react-native-bootcamp/week_6-optimize-prime.git
+git clone https://github.com/omuraydin24/WannaRun-ReactNative.git
 ```
 
 - npm install or yarn install for installing all the dependencies
