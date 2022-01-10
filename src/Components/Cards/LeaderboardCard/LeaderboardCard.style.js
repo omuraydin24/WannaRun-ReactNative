@@ -10,35 +10,23 @@ export default StyleSheet.create({
     margin: 5,
     padding: 10,
     justifyContent: 'space-between',
-    backgroundColor: "#f0fcfc",
+    backgroundColor: "#5c6bc0",
     borderRadius: 10,
 
   },
   values: {
-    fontWeight: 'bold',
     fontSize: 20,
     margin: 5,
-    color: "black",
+    color: "white",
+    textAlign: "right",
+    flex: 1,
   },
   username: {
     fontWeight: 'bold',
-    fontSize: 12,
+    fontSize: 17,
     margin: 5,
-    color: "black",
-
-  },
-  distance: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    margin: 5,
-  },
-  duration: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    margin: 5,
-  },
-  valuesContainer: {
+    color: "white",
     flex: 1,
-    justifyContent: 'space-between'
   },
+  
 });
