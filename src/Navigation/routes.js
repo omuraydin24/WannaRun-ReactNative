@@ -6,5 +6,6 @@ export default {
   HISTORY_PAGE: "HistoryPage",
   HISTORY_DETAIL_PAGE: "HistoryDetailPage",
   SUMMARY_PAGE: "SummaryPage",
+  LEADERBOARD_PAGE: "LeaderboardPage",
 
 }
