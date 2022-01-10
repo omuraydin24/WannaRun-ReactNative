@@ -1,6 +1,6 @@
 # WannaRun
 
-## Running-Walking Application
+## Running - Walking Application
 
 ### Tracks your activity and shows the results. Lets you share it anywhere you want.
 
@@ -8,10 +8,20 @@
 
 ---
 
-### Screen Recordings
+## Screen Recordings
 
-<img src="./assets/gifs/Gif1.gif" alt="Gif" width="250"/><img src="./assets/gifs/Gif2.gif" alt="Gif" width="250"/>
 
+Register Screen          |  Login Screen                 | Activity Screen      | 
+:-------------------------:|:-------------------------:|:-------------------------:|
+<img src="./src/assets/gifs/register.gif" alt="Gif" height="550"/>  |  <img src="./src/assets/gifs/login.gif" alt="Gif" height="550"/> |  <img src="./src/assets/gifs/2m.gif" alt="Gif" height="550"/> 
+
+History Screen          |  Leaderboard Screen 
+:-------------------------:|:-------------------------:
+  <img src="./src/assets/gifs/history.gif" alt="Gif" height="550"/>|  <img src="./src/assets/gifs/leaderboard.gif" alt="Gif" height="550"/> | 
+
+Leaderboard Screen          |  
+:-------------------------:|
+  
 ## Installation
 
 - [Install React Native](https://reactnative.dev/docs/environment-setup)
