@@ -12,7 +12,11 @@ const HistoryDetailLayout = ({ detailData }) => {
 
   const mapRef = useRef(null)
   const detail = detailData.allData
-  console.log(detail)
+
+  const timeSecond = (Math.floor(detail.time % 60) < 10) ? "0" + Math.floor(detail.time % 60) : Math.floor(detail.time % 60)
+  const timeMinute = (Math.floor(detail.time / 60) < 10) ? "0" + Math.floor(detail.time / 60) : Math.floor(detail.time / 60)
+  const timeHour = (Math.floor(detail.time / 3600) < 10) ? "0" + Math.floor(detail.time / 3600) : Math.floor(data.duration / 3600)
+
 
   useEffect(() => {
     mapRef.current.fitToSuppliedMarkers(["origin", "destination"], {
@@ -64,12 +68,12 @@ const HistoryDetailLayout = ({ detailData }) => {
               <Text style={styles.text} >Avg. pace (km/h)</Text>
             </View>
             <View style={styles.innerContainer}>
-              <Text style={styles.value}>{detail.time} </Text>
-              <Text style={styles.text} >Duration (sec)</Text>
+              <Text style={styles.value}>{timeHour}:{timeMinute}:{timeSecond}</Text>
+              <Text style={styles.text} >Duration</Text>
             </View>
           </View>
           <View style={styles.innerContainer}>
-            <Text style={styles.value} >{detail.distance.toFixed(2)} km</Text>
+            <Text style={styles.value} >{detail.distance.toFixed(2)}</Text>
             <Text style={styles.text} >Distance (km)</Text>
           </View>
           <Text style={styles.date}>{detail.date} </Text>
