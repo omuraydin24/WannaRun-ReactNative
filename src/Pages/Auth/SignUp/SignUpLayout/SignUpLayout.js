@@ -1,21 +1,21 @@
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { Formik } from "formik"
 import Button from '../../../../Components/Button';
 import Input from "../../../../Components/Input";
 import auth from '@react-native-firebase/auth';
 
 import styles from "./SignUpLayout.style";
-import { SignUpScheme } from "../../../../Components/utils/ValidationScheme";
+// import { SignUpScheme } from "../../../../Components/utils/ValidationScheme";
 
 const SignUpLayout = ({ onSubmit, onPress }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>🏃‍♂️</Text>
+      <Image style={styles.logo} source={require('../../../../assets/images/logo.png')} />
       <Formik
         initialValues={{ username: '', password: '' }}
-        validationSchema={SignUpScheme}
+        // validationSchema={SignUpScheme}
         onSubmit={onSubmit}
       >
         {({ handleChange, handleSubmit, values, errors, touched, handleBlur }) => (

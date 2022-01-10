@@ -3,13 +3,14 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
+    marginTop: 100,
   },
   logo: {
-    fontSize: 100,
-    textAlign: "center",
+    resizeMode: 'contain',
     marginBottom: 10,
+    alignSelf: 'center',
+    height: 100,
   },
   validationText: {
     color: "crimson",
