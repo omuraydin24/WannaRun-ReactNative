@@ -3,10 +3,9 @@ import { Alert, BackHandler } from 'react-native';
 import { captureRef } from 'react-native-view-shot';
 import Share from 'react-native-share';
 
-import Summarylayout from './SummaryLayout';
+import SummaryLayout from './SummaryLayout';
 
 const Summary = ({ route, navigation }) => {
-
   const viewRef = useRef();
   const { allData } = route.params;
 
@@ -20,12 +19,12 @@ const Summary = ({ route, navigation }) => {
       });
       await Share.open({ url: uri });
     } catch (err) {
-      Alert.alert('WannaRun', 'An error occurred')
+      Alert.alert('WannaRun', 'User cancelled the process')
     }
   };
 
   return (
-    <Summarylayout allData={allData} onPressShare={handleShare} onPressBack={() => navigation.pop(2)} viewRef={viewRef} />
+    <SummaryLayout allData={allData} onPressShare={handleShare} onPressBack={() => navigation.pop(2)} viewRef={viewRef} />
   );
 }
 

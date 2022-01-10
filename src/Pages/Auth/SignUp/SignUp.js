@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, SafeAreaView, KeyboardAvoidingView, TouchableOpacity, Keyboard, Alert } from 'react-native';
-import Input from '../../../Components/Input';
-import AuthButton from '../../../Components/Button';
-import SignUpLayout from './SignUpLayout/SignUpLayout';
+import React from 'react';
+import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import SignUpLayout from './SignUpLayout/SignUpLayout';
 import auth from '@react-native-firebase/auth';
 
-
-const SignUp = props => {
+const SignUp = () => {
   const navigation = useNavigation();
-  const [isLogin, setIsLogin] = useState(true);
 
   const handleReturnSignIn = () => {
     if (!navigation.canGoBack()) {
@@ -17,7 +13,7 @@ const SignUp = props => {
     }
     navigation.goBack();
   }
-
+  
   const handleSignUp = (formValues) => {
 
     if (formValues.password !== formValues.passwordAgain) {
@@ -34,8 +30,6 @@ const SignUp = props => {
     } catch (err) {
       Alert.alert('WannaRun', 'An error occurred')
     }
-
-
   }
 
   return (

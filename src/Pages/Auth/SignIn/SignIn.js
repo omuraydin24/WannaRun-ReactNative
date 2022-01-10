@@ -17,10 +17,9 @@ const SignIn = () => {
       auth()
         .signInWithEmailAndPassword(formValues.username, formValues.password)
       Alert.alert('WannaRun', 'Logged In successfully.')
-      navigation.navigate(routes.DASHBOARD_PAGE)
 
     } catch (err) {
-      Alert.alert('WannaRun', 'An error occurred')
+      Alert.alert('WannaRun', 'Wrong user information')
     }
   }
 
@@ -28,6 +27,4 @@ const SignIn = () => {
     <SignInLayout onSubmit={handleSignIn} onSignUpNavigate={handleNavigateSignUp} />
   );
 }
-
-
 export default SignIn;

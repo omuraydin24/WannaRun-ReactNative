@@ -72,10 +72,10 @@ const Activity = () => {
         time: time,
         date: date,
       })
-      if (time % 10 == 9) {
+      if (time % 60 == 0) {
         setGraphData([...graphData, (calculateDistance(allData.allCoords[length].latitude, allData.allCoords[length].longitude, currentLocation.latitude, currentLocation.longitude) * 10000)])
       }
-      if (graphData.length > 5) {
+      if (graphData.length > 6) {
         let shiftedArray = graphData
         shiftedArray.shift()
         setGraphData(shiftedArray)
