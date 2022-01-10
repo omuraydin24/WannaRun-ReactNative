@@ -13,11 +13,11 @@
 
 Register Screen          |  Login Screen                 | Activity Screen      | 
 :-------------------------:|:-------------------------:|:-------------------------:|
-<img src="./src/assets/gifs/register.gif" alt="Gif" height="550"/>  |  <img src="./src/assets/gifs/login.gif" alt="Gif" height="550"/> |  <img src="./src/assets/gifs/2m.gif" alt="Gif" height="550"/> 
+<img src="./src/assets/gifs/register.gif" alt="Gif" height="500"/>  |  <img src="./src/assets/gifs/login.gif" alt="Gif" height="500"/> |  <img src="./src/assets/gifs/2m.gif" alt="Gif" height="500"/> 
 
 History Screen          |  Leaderboard Screen 
 :-------------------------:|:-------------------------:
-  <img src="./src/assets/gifs/history.gif" alt="Gif" height="550"/>|  <img src="./src/assets/gifs/leaderboard.gif" alt="Gif" height="550"/> | 
+  <img src="./src/assets/gifs/history.gif" alt="Gif" height="500"/>|  <img src="./src/assets/gifs/leaderboard.gif" alt="Gif" height="500"/> | 
 
 Leaderboard Screen          |  
 :-------------------------:|
