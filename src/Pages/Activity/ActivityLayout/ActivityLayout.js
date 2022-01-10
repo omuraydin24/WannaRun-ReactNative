@@ -1,21 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Button, ScrollView, TouchableOpacity, ActivityIndicator, Text } from 'react-native';
-import { hasPermission } from "../../Hooks/useLocationPermission";
-import { Timer, Countdown } from 'react-native-element-timer';
+import React from 'react';
+import { View, ScrollView, TouchableOpacity, ActivityIndicator, Text } from 'react-native';
+import { Timer } from 'react-native-element-timer';
 import { BarChart } from "react-native-chart-kit";
 import { PROVIDER_GOOGLE } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 
 import MapView, { Circle, Polyline, Marker, AnimatedRegion } from 'react-native-maps';
-import Geolocation from '@react-native-community/geolocation';
 import WeatherCard from '../../../Components/Cards/WeatherCard';
-import MapViewDirections from "react-native-maps-directions";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from "./ActivityLayout.style";
 
 
 const ActivityLayout = ({ viewRef, hasStarted, chartConfig, barGraphData, handleTimerPause, onPress, allData, handleTimerStart, handleTimerStop, timerRef, handleTimer, initialLocation, currentLocation, handleEnd }) => {
+  const navigation = useNavigation();
   const pace = (((allData.distance) / (allData.time / 3600)).toFixed(2))
+
   // console.log("time", allData.time)
   // console.log("alldata", allData)
   return (
@@ -57,9 +57,10 @@ const ActivityLayout = ({ viewRef, hasStarted, chartConfig, barGraphData, handle
               longitudeDelta: 0.005,
             }}
           >
-            <Marker
-              coordinate={currentLocation}
-              identifier="current"
+            <Circle
+              center={currentLocation}
+              radius={10}
+              fillColor="#816cf9"
             />
             <Polyline
               coordinates={allData.allCoords}
