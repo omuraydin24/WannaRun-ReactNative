@@ -7,10 +7,12 @@ import Dashboard from '../Pages/Dashboard';
 import SignIn from '../Pages/Auth/SignIn';
 import SignUp from "../Pages/Auth/SignUp";
 import History from "../Pages/History";
+import HistoryDetail from "../Pages/HistoryDetail";
+import Summary from "../Pages/Summary";
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import routes from "./routes";
 import auth from '@react-native-firebase/auth'
-import Leaderboard from '../Pages/Leaderboard/Leaderboard';
+import Leaderboard from '../Pages/Leaderboard';
 
 
 const Tab = createBottomTabNavigator();
@@ -20,15 +22,14 @@ const Navigation = () => {
   // const navTheme = DefaultTheme;
   // navTheme.colors.background = theme == 'light' ? 'green' : 'blue';
 
-  const DetailStack = () => {
-    const [hasSession, setHasSession] = useState(null)
+  const [hasSession, setHasSession] = useState(null)
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(setHasSession)
+    return subscriber;
+  }, [])
 
-    useEffect(() => {
-      const subscriber = auth().onAuthStateChanged(setHasSession)
-      return subscriber;
-    }, [])
-
-    return (
+  return (
+    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
@@ -37,7 +38,10 @@ const Navigation = () => {
           <>
             <Stack.Screen name={routes.DASHBOARD_PAGE} component={Dashboard} />
             <Stack.Screen name={routes.ACTIVITY_PAGE} component={Activity} />
+            <Stack.Screen name={routes.SUMMARY_PAGE} component={Summary} />
+            <Stack.Screen name={routes.LEADERBOARD_PAGE} component={Leaderboard} />
             <Stack.Screen name={routes.HISTORY_PAGE} component={History} />
+            <Stack.Screen name={routes.HISTORY_DETAIL_PAGE} component={HistoryDetail} />
           </>
         ) : (
           <>
@@ -46,49 +50,6 @@ const Navigation = () => {
           </>
         )}
       </Stack.Navigator>
-    );
-  };
-
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: "blue",
-          tabBarInactiveTintColor: "black",
-          tabBarStyle: {
-            backgroundColor: "white",
-            height: 65,
-          },
-          tabBarLabelStyle: {
-            bottom: 10,
-            // fontFamily: 'Proxima Nova Semibold',
-            // fontSize: fontSize.small,
-          },
-        }}
-      >
-        <Tab.Screen
-          name="MainTab"
-          component={DetailStack}
-        // options={{
-        //   tabBarLabel: t("Comics"),
-        //   tabBarIcon: ({ focused, color, size }) => {
-        //     return <Icon name="skull" size={size} color={color} />;
-        //   },
-        // }}
-        />
-        <Tab.Screen
-          name="HistoryTab"
-          component={History}
-
-        />
-        <Tab.Screen
-          name="LeaderboardTab"
-          component={Leaderboard}
-
-        />
-
-      </Tab.Navigator>
     </NavigationContainer>
   );
 };
