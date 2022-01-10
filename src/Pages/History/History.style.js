@@ -6,15 +6,31 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "#eaeaea",
+    backgroundColor: "#1a237e",
+    opacity: 0.7,
     borderRadius: 10,
     marginTop: 10,
     marginHorizontal: 10,
     flexDirection: "row",
+    alignItems: "center",
   },
   bottomContainer: {
     flexDirection: "row",
 
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 25,
+    textAlign: "center",
+    marginTop: 10,
+    color: "#1a237e"
+  },
+
+  goBack: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    zIndex: 10,
   },
   infoContainer: {
     flex: 1,
@@ -25,13 +41,15 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
 
-  durationNumber: {
-    fontSize: 27,
-    color: "black",
+  date: {
+    fontSize: 15,
+    color: "white",
+    fontWeight: "bold",
   },
   durationText: {
     fontSize: 15,
-    color: "black",
+    color: "white",
+    fontWeight: "bold",
   },
   subContainer: {
     alignItems: "center",
@@ -39,20 +57,16 @@ export default StyleSheet.create({
     flex: 1,
   },
   distanceText: {
-    color: "black",
+    color: "white",
+    fontWeight: "bold",
     fontSize: 14,
   },
   distanceNumber: {
-    color: "black",
+    color: "white",
+    fontWeight: "bold",
     fontSize: 20,
   },
-  paceText: {
-    color: "black",
-    fontSize: 14,
-  },
-  paceNumber: {
-    color: "black",
-    fontSize: 20,
-  },
+
+
 
 });
