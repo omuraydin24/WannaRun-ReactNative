@@ -4,6 +4,7 @@ const { width, height } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
+    position: 'relative',
     flex: 1,
     backgroundColor: "#816cf9",
     width: width * 0.9,
@@ -12,6 +13,12 @@ export default StyleSheet.create({
     marginVertical: 15,
     borderRadius: 20,
 
+  },
+  goBack: {
+    position: 'absolute',
+    top: 30,
+    left: 30,
+    zIndex:10,
   },
   valuesContainer: {
     margin: 10,
