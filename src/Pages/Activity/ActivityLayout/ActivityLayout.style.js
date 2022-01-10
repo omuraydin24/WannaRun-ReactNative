@@ -34,12 +34,7 @@ export default StyleSheet.create({
     zIndex: 10,
     alignItems: "center",
   },
-  text: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginTop: 40,
-  },
-  timer: {
+   timer: {
     marginVertical: 10,
   },
   timerText: {

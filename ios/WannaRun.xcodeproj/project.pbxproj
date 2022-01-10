@@ -28,6 +28,12 @@
 		E5A000F9D7444B5FAF6773FB /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFEA6140339F4635A5433AB3 /* Octicons.ttf */; };
 		F69984A083624E56820666E9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42A84D613F14458BBCCE6410 /* SimpleLineIcons.ttf */; };
 		393D89DB79974909B3E47758 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EE8E1BD81554AD7BAC181AE /* Zocial.ttf */; };
+		525B56861C9A4232BC4555CD /* AveriaSansLibre-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B71F8D74DD0F4F3AAA753E52 /* AveriaSansLibre-Bold.ttf */; };
+		9230292D6EF64DF38AD7BF29 /* AveriaSansLibre-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C53C137D250A416289C70E97 /* AveriaSansLibre-BoldItalic.ttf */; };
+		B34B2225E0064C48B71696A7 /* AveriaSansLibre-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B15BA6625D0A4358992C8142 /* AveriaSansLibre-Italic.ttf */; };
+		A52A7F852603431E97C9C4FA /* AveriaSansLibre-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 788571E44A3F4529BEEFC675 /* AveriaSansLibre-Light.ttf */; };
+		D2E36EB02E144C8A882AE988 /* AveriaSansLibre-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B36E64BFDE2548BF8E0448F3 /* AveriaSansLibre-LightItalic.ttf */; };
+		A9629FE0A4A449FB982FE7F2 /* AveriaSansLibre-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0800846E0DD14DF2A4169AFD /* AveriaSansLibre-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +74,12 @@
 		CFEA6140339F4635A5433AB3 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		42A84D613F14458BBCCE6410 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2EE8E1BD81554AD7BAC181AE /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B71F8D74DD0F4F3AAA753E52 /* AveriaSansLibre-Bold.ttf */ = {isa = PBXFileReference; name = "AveriaSansLibre-Bold.ttf"; path = "../src/assets/fonts/AveriaSansLibre-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C53C137D250A416289C70E97 /* AveriaSansLibre-BoldItalic.ttf */ = {isa = PBXFileReference; name = "AveriaSansLibre-BoldItalic.ttf"; path = "../src/assets/fonts/AveriaSansLibre-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B15BA6625D0A4358992C8142 /* AveriaSansLibre-Italic.ttf */ = {isa = PBXFileReference; name = "AveriaSansLibre-Italic.ttf"; path = "../src/assets/fonts/AveriaSansLibre-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		788571E44A3F4529BEEFC675 /* AveriaSansLibre-Light.ttf */ = {isa = PBXFileReference; name = "AveriaSansLibre-Light.ttf"; path = "../src/assets/fonts/AveriaSansLibre-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B36E64BFDE2548BF8E0448F3 /* AveriaSansLibre-LightItalic.ttf */ = {isa = PBXFileReference; name = "AveriaSansLibre-LightItalic.ttf"; path = "../src/assets/fonts/AveriaSansLibre-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0800846E0DD14DF2A4169AFD /* AveriaSansLibre-Regular.ttf */ = {isa = PBXFileReference; name = "AveriaSansLibre-Regular.ttf"; path = "../src/assets/fonts/AveriaSansLibre-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +188,12 @@
 				CFEA6140339F4635A5433AB3 /* Octicons.ttf */,
 				42A84D613F14458BBCCE6410 /* SimpleLineIcons.ttf */,
 				2EE8E1BD81554AD7BAC181AE /* Zocial.ttf */,
+				B71F8D74DD0F4F3AAA753E52 /* AveriaSansLibre-Bold.ttf */,
+				C53C137D250A416289C70E97 /* AveriaSansLibre-BoldItalic.ttf */,
+				B15BA6625D0A4358992C8142 /* AveriaSansLibre-Italic.ttf */,
+				788571E44A3F4529BEEFC675 /* AveriaSansLibre-Light.ttf */,
+				B36E64BFDE2548BF8E0448F3 /* AveriaSansLibre-LightItalic.ttf */,
+				0800846E0DD14DF2A4169AFD /* AveriaSansLibre-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -287,6 +305,12 @@
 				E5A000F9D7444B5FAF6773FB /* Octicons.ttf in Resources */,
 				F69984A083624E56820666E9 /* SimpleLineIcons.ttf in Resources */,
 				393D89DB79974909B3E47758 /* Zocial.ttf in Resources */,
+				525B56861C9A4232BC4555CD /* AveriaSansLibre-Bold.ttf in Resources */,
+				9230292D6EF64DF38AD7BF29 /* AveriaSansLibre-BoldItalic.ttf in Resources */,
+				B34B2225E0064C48B71696A7 /* AveriaSansLibre-Italic.ttf in Resources */,
+				A52A7F852603431E97C9C4FA /* AveriaSansLibre-Light.ttf in Resources */,
+				D2E36EB02E144C8A882AE988 /* AveriaSansLibre-LightItalic.ttf in Resources */,
+				A9629FE0A4A449FB982FE7F2 /* AveriaSansLibre-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

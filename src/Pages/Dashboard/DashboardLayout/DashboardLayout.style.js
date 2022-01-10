@@ -56,16 +56,18 @@ export default StyleSheet.create({
   },
   infoTitle: {
     color: "white",
-    fontSize: 17,
+    fontSize: 18,
     textAlign: "center",
+    fontFamily: "AveriaSansLibre-Regular",
+
   },
   infoValue: {
     fontWeight: "bold"
   },
   headerText: {
-    fontSize: 20,
-    marginTop: 15,
-    fontFamily: "AveriaSansLibre-Regular"
+    fontSize: 30,
+    marginTop: 10,
+    fontFamily: "AveriaSansLibre-Regular",
   },
   leaderboardContainer: {
     width: width * 0.35,
@@ -76,12 +78,11 @@ export default StyleSheet.create({
   },
   mainTitle: {
     fontSize: 30,
-    fontWeight: "bold",
     color: "white",
+    fontFamily: "AveriaSansLibre-Bold",
 
   },
   title: {
-    fontWeight: 'bold',
     fontSize: 20,
     color: "white",
     margin: 15,
@@ -89,6 +90,8 @@ export default StyleSheet.create({
     width: width * 0.35,
     padding: 5,
     textAlign: 'center',
+    fontFamily: "AveriaSansLibre-Bold",
+
   },
   activity: {
     backgroundColor: "#806af8",
