@@ -19,8 +19,6 @@ History Screen          |  Leaderboard Screen
 :-------------------------:|:-------------------------:
   <img src="./src/assets/gifs/history.gif" alt="Gif" height="500"/>|  <img src="./src/assets/gifs/leaderboard.gif" alt="Gif" height="500"/> | 
 
-Leaderboard Screen          |  
-:-------------------------:|
   
 ## Installation
 
