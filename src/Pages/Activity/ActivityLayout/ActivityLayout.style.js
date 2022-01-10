@@ -10,13 +10,20 @@ export default StyleSheet.create({
     flex: 1,
     position: "relative"
   },
+  goBack: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    zIndex:10,
+  },
   map: {
     height: height * 0.6,
     marginTop: -20,
-
+    borderWidth: 2,
+    borderColor: "#816cf9",
+    borderRadius: 20,
   },
   mapContainer: {
-
   },
   infoContainer: {
     top: 0,
@@ -35,7 +42,6 @@ export default StyleSheet.create({
   },
   timer: {
     marginVertical: 10,
-
   },
   timerText: {
     color: "white",
@@ -59,7 +65,7 @@ export default StyleSheet.create({
   },
   statusButtonContainer: {
     position: "absolute",
-    bottom: 250,
+    bottom: 300,
     left: (width / 2) - (75 / 2),
     zIndex: 100,
     width: 75,
@@ -69,6 +75,12 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  graphTitle: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 20,
+    marginTop: 10,
+  },
   button: {
     marginVertical: 5,
     backgroundColor: 'white',
@@ -76,7 +88,9 @@ export default StyleSheet.create({
     width: 100,
   },
   barChart: {
-    marginVertical: 8,
-    borderRadius: 16
+    margin: 10,
+    borderRadius: 20,
+    borderWidth: 3,
+    borderColor: 'coral',
   }
 });

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Button, ScrollView, TouchableOpacity, ActivityIndicator, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { hasPermission } from "../../Hooks/useLocationPermission";
 import { Timer, Countdown } from 'react-native-element-timer';
 import { BarChart } from "react-native-chart-kit";
 import { PROVIDER_GOOGLE } from 'react-native-maps';
+
 import MapView, { Circle, Polyline, Marker, AnimatedRegion } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import WeatherCard from '../../../Components/Cards/WeatherCard';
@@ -13,13 +13,16 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from "./ActivityLayout.style";
 
-const GOOGLE_API = "AIzaSyArbjnFtKZXprOc80XxdhqMQ7szz-AnBhM"
 
-const ActivityLayout = ({ hasStarted, chartConfig, barGraphData, handleTimerPause, handleFucktivity, allData, handleTimerStart, handleTimerStop, timerRef, handleTimer, initialLocation, currentLocation, handleEnd }) => {
-  console.log("time", allData.time)
-  console.log("alldata", allData)
+const ActivityLayout = ({ viewRef, hasStarted, chartConfig, barGraphData, handleTimerPause, onPress, allData, handleTimerStart, handleTimerStop, timerRef, handleTimer, initialLocation, currentLocation, handleEnd }) => {
+  const pace = (((allData.distance) / (allData.time / 3600)).toFixed(2))
+  // console.log("time", allData.time)
+  // console.log("alldata", allData)
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.goBack} onPress={() => navigation.pop(2)}>
+        <Icon name="arrow-left-circle" size={35} color="white" />
+      </TouchableOpacity>
       <ScrollView style={styles.scrollView}>
         <View style={styles.infoContainer}>
           <Timer
@@ -30,23 +33,21 @@ const ActivityLayout = ({ hasStarted, chartConfig, barGraphData, handleTimerPaus
             onPause={e => { }}
             onEnd={e => handleEnd(e)}
           />
-
           <View style={styles.innerContainer}>
             <View style={styles.valueContainer}>
               <Text style={styles.distance}>{(allData.distance.toFixed(2))}</Text>
               <Text style={styles.distanceText}>Distance (km)</Text>
             </View>
             <View style={styles.valueContainer}>
-              <Text style={styles.distance}>{((allData.distance) / (allData.time / 3600)).toFixed(2)}</Text>
+              <Text style={styles.distance}>{pace == NaN ? 0 : pace}</Text>
               <Text style={styles.distanceText}>Avg. pace (km/h)</Text>
             </View>
           </View>
 
           <WeatherCard currentLocation={currentLocation} />
         </View>
-        <View style={styles.mapContainer} pointerEvents="none">
+        <View style={styles.mapContainer} pointerEvents="none" ref={viewRef}>
           <MapView
-            // ref={mapRef}
             style={styles.map}
             provider={PROVIDER_GOOGLE}
             region={{
@@ -62,11 +63,9 @@ const ActivityLayout = ({ hasStarted, chartConfig, barGraphData, handleTimerPaus
             />
             <Polyline
               coordinates={allData.allCoords}
-              strokeColor="blue" // fallback for when `strokeColors` is not supported by the map-provider
+              strokeColor="#816cf9" // fallback for when `strokeColors` is not supported by the map-provider
               strokeWidth={6}
             />
-
-
           </MapView>
         </View>
 
@@ -81,14 +80,15 @@ const ActivityLayout = ({ hasStarted, chartConfig, barGraphData, handleTimerPaus
           </TouchableOpacity>
         </View>
         <View>
+          <Text style={styles.graphTitle}>Graph of the activity (Distance/Minute)</Text>
           <BarChart
             style={styles.barChart}
             data={barGraphData}
-            width={400}
+            width={365}
             height={220}
             yAxisLabel=""
             chartConfig={chartConfig}
-            verticalLabelRotation={30}
+            verticalLabelRotation={0}
           />
         </View>
       </ScrollView>
